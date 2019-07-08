@@ -4,7 +4,7 @@ MAINTAINER Haesung Hwang <suhoag@naver.com>
 
 # 업데이트 및 모듈 설치
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install software-properties-common tzdata apache2 -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get  install apt-utils software-properties-common tzdata apache2 -y && \
     ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
     add-apt-repository ppa:ondrej/php -y && \
     apt-get update && apt upgrade -y && \

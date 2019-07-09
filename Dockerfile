@@ -16,18 +16,26 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     php -r "unlink('composer-setup.php');" && \
     mv composer.phar /usr/bin/composer
 
+# php.ini 에 xdebug 설정 추가
 RUN echo "xdebug.remote_enable=true" >> /etc/php/7.2/fpm/php.ini && \
     echo "xdebug.remote_connect_back=true" >> /etc/php/7.2/fpm/php.ini && \
-    echo "xdebug.idekey=PHPSTORM" >> /etc/php/7.2/fpm/php.ini
+    echo "xdebug.idekey=PHPSTORM" >> /etc/php/7.2/fpm/php.ini && \
+    sed -i 's/;date.timezone =/date.timezone = Asia\/Seoul/g' /etc/php/7.2/fpm/php.ini
 
-RUN a2enmod proxy_fcgi && a2enmod rewrite
+#apache 모듈 활성화
+RUN a2enmod proxy_fcgi && a2enmod rewrite && a2enmod ssl && a2enconf php7.2-fpm
 
-# 설정 디렉토리
-RUN mkdir /www
+#볼륨 경로 설정
+RUN mkdir /etc/apache2/certificate
 
 # 정리
 RUN apt-get autoremove && apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-VOLUME ["/www", "/etc/apache2/sites-available"]
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
+VOLUME ["/var/www", "/etc/apache2/sites-available", "/etc/apache2/certificate"]
 EXPOSE 80 443
+
+CMD ["hiworks-api-dev"]

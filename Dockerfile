@@ -38,5 +38,3 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 
 VOLUME ["/var/www", "/etc/apache2/sites-available", "/etc/apache2/certificate"]
 EXPOSE 80 443
-
-CMD ["hiworks-api-dev"]

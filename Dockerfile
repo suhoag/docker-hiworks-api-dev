@@ -30,7 +30,8 @@ RUN mkdir /etc/apache2/certificate
 
 # 정리
 RUN apt-get autoremove && apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    rm -fr /etc/apache2/sites-enabled/*
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]

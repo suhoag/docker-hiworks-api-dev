@@ -4,4 +4,6 @@ set -e
 
 service php7.2-fpm start
 
-exec apache2ctl -DFOREGROUND
+/usr/sbin/apache2ctl -DFOREGROUND
+
+exec "$@"

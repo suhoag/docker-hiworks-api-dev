@@ -8,7 +8,7 @@ RUN apt-get update && \
     ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
     add-apt-repository ppa:ondrej/php -y && \
     apt-get update && apt upgrade -y && \
-    apt-get install php5.6 php5.6-fpm php5.6-mysql php5.6-mbstring php5.6-xml php5.6-xml php5.6-pgsql php-xdebug php-memcache php-memcached -y -y
+    apt-get install php5.6 php5.6-fpm php5.6-mysql php5.6-mbstring php5.6-zip php5.6-xml php5.6-pgsql php-xdebug php-memcache php-memcached -y -y
 
 # composer 설치
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \

@@ -28,7 +28,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 #apache 모듈 활성화
 RUN a2enmod proxy_fcgi setenvif rewrite ssl && a2enconf php5.6-fpm
 
-#볼륨 경로 설정
+#볼륨 경로 생성(인증서)
 RUN mkdir /etc/apache2/certificate
 
 # 정리

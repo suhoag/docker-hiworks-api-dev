@@ -26,7 +26,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     mv composer.phar /usr/bin/composer
 
 #apache 모듈 활성화
-RUN a2enmod proxy_fcgi setenvif && a2enmod rewrite && a2enmod ssl && a2enconf php5.6-fpm
+RUN a2enmod proxy_fcgi setenvif rewrite ssl && a2enconf php5.6-fpm
 
 #볼륨 경로 설정
 RUN mkdir /etc/apache2/certificate

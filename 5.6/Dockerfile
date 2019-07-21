@@ -40,5 +40,5 @@ COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-VOLUME ["/var/www", "/etc/apache2/sites-available", "/etc/apache2/certificate"]
+VOLUME ["/var/www", "/etc/apache2/sites-enabled", "/etc/apache2/certificate"]
 EXPOSE 80 443

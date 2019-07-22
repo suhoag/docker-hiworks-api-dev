@@ -23,7 +23,7 @@ RUN echo "xdebug.remote_enable=true" >> /etc/php/7.2/fpm/php.ini && \
 #apache 모듈 활성화
 RUN a2enmod proxy_fcgi && a2enmod rewrite && a2enmod ssl && a2enconf php7.2-fpm
 
-#볼륨 경로 설정
+#볼륨 경로 생성(인증서)
 RUN mkdir /etc/apache2/certificate
 
 # 정리

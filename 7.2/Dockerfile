@@ -1,7 +1,5 @@
 FROM ubuntu:19.04
 
-MAINTAINER Haesung Hwang <suhoag@naver.com>
-
 # 업데이트 및 모듈 설치
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get  install apt-utils software-properties-common tzdata apache2 -y && \

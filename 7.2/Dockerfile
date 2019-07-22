@@ -6,7 +6,7 @@ RUN apt-get update && \
     ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
     add-apt-repository ppa:ondrej/php -y && \
     apt-get update && apt upgrade -y && \
-    apt-get install php7.2 php7.2-fpm php7.2-mysql php7.2-mbstring php7.2-xml php-xdebug php-memcache php-memcached -y
+    apt-get install php7.2 php7.2-fpm php7.2-mysql php7.2-mbstring php7.2-zip php7.2-xml php-xdebug php-memcache php-memcached -y
 
 # composer 설치
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \

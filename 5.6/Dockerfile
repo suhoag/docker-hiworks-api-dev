@@ -15,7 +15,9 @@ RUN echo "xdebug.remote_enable=true" >> /etc/php/5.6/fpm/php.ini && \
     sed -i 's/;date.timezone =/date.timezone = Asia\/Seoul/g' /etc/php/5.6/fpm/php.ini && \
     sed -i 's/short_open_tag = Off/short_open_tag = On/g' /etc/php/5.6/fpm/php.ini && \
     sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/g' /etc/php/5.6/fpm/php.ini && \
-    sed -i 's/display_errors = Off/display_errors = On/g' /etc/php/5.6/fpm/php.ini
+    sed -i 's/display_errors = Off/display_errors = On/g' /etc/php/5.6/fpm/php.ini && \
+    sed -i 's/;security.limit_extensions = .php .php3 .php4 .php5/security.limit_extensions = .php .php3 .php4 .php5 .html .htm/g' /etc/php/5.6/fpm/pool.d/www.conf && \
+    sed -i 's/<FilesMatch ".+\\.ph(p\[3457]?|t|tml)$">/<FilesMatch ".+\\.(ph(p[3457]?|t|tml)|html|htm)$">/g' /etc/apache2/conf-available/php5.6-fpm.conf
 
 # composer 설치
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \

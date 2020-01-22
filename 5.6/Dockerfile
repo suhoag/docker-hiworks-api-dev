@@ -2,11 +2,11 @@ FROM ubuntu:19.04
 
 # 업데이트 및 모듈 설치
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get  install apt-utils software-properties-common tzdata apache2 vim -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get install apt-utils software-properties-common tzdata apache2 vim -y && \
     ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
     add-apt-repository ppa:ondrej/php -y && \
     apt-get update && apt upgrade -y && \
-    apt-get install php5.6 php5.6-fpm php5.6-mysql php5.6-mbstring php5.6-zip php5.6-xml php5.6-pgsql php-xdebug php-memcache php-memcached -y -y
+    apt-get install php5.6 php5.6-fpm php5.6-mysql php5.6-mbstring php5.6-zip php5.6-xml php5.6-pgsql php-xdebug php-memcache php-memcached php5.6-curl php5.6-mcrypt -y
 
 # php.ini 에 xdebug 설정 추가
 RUN echo "xdebug.remote_enable=true" >> /etc/php/5.6/fpm/php.ini && \

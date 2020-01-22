@@ -29,7 +29,7 @@ RUN a2enmod proxy_fcgi setenvif rewrite ssl && a2enconf php7.2-fpm
 RUN mkdir /etc/apache2/certificate
 
 # 정리
-RUN apt-get autoremove && apt-get clean && \
+RUN apt-get autoremove -y && apt-get clean -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     rm -fr /etc/apache2/sites-enabled/*
 

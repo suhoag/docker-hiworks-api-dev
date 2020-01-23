@@ -13,12 +13,12 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     mv composer.phar /usr/bin/composer
 
 # php.ini 에 xdebug 설정 추가
-RUN echo "xdebug.remote_enable=true" >> /etc/php/7.2/fpm/php.ini && \
-    echo "xdebug.remote_connect_back=true" >> /etc/php/7.2/fpm/php.ini && \
-    echo "xdebug.idekey=PHPSTORM" >> /etc/php/7.2/fpm/php.ini && \
-    sed -i 's/;date.timezone =/date.timezone = Asia\/Seoul/g' /etc/php/7.2/fpm/php.ini && \
-    sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/g' /etc/php/7.2/fpm/php.ini && \
-    sed -i 's/display_errors = Off/display_errors = On/g' /etc/php/7.2/fpm/php.ini
+RUN echo "xdebug.remote_enable=true" >> /etc/php/$PHP_VERSION/fpm/php.ini && \
+    echo "xdebug.remote_connect_back=true" >> /etc/php/$PHP_VERSION/fpm/php.ini && \
+    echo "xdebug.idekey=PHPSTORM" >> /etc/php/$PHP_VERSION/fpm/php.ini && \
+    sed -i 's/;date.timezone =/date.timezone = Asia\/Seoul/g' /etc/php/$PHP_VERSION/fpm/php.ini && \
+    sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/g' /etc/php/$PHP_VERSION/fpm/php.ini && \
+    sed -i 's/display_errors = Off/display_errors = On/g' /etc/php/$PHP_VERSION/fpm/php.ini
 
 #apache php-fpm 설정 활성화
 RUN a2enconf php$PHP_VERSION-fpm

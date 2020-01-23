@@ -4,7 +4,7 @@ ENV PHP_VERSION 7.3
 
 # 업데이트 및 모듈 설치
 RUN apt-get update && \
-    apt-get install php{$PHP_VERSION} php{$PHP_VERSION}-fpm php{$PHP_VERSION}-mysql php{$PHP_VERSION}-mbstring php{$PHP_VERSION}-zip php{$PHP_VERSION}-xml php-xdebug php-memcache php-memcached -y
+    apt-get install php$PHP_VERSION php$PHP_VERSION-fpm php$PHP_VERSION-mysql php$PHP_VERSION-mbstring php$PHP_VERSION-zip php$PHP_VERSION-xml php-xdebug php-memcache php-memcached -y
 
 # composer 설치
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
@@ -21,7 +21,7 @@ RUN echo "xdebug.remote_enable=true" >> /etc/php/7.2/fpm/php.ini && \
     sed -i 's/display_errors = Off/display_errors = On/g' /etc/php/7.2/fpm/php.ini
 
 #apache php-fpm 설정 활성화
-RUN a2enconf php{$PHP_VERSION}-fpm
+RUN a2enconf php$PHP_VERSION-fpm
 
 # 정리
 RUN apt-get autoremove -y && apt-get clean -y && \

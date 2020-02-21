@@ -2,13 +2,12 @@ FROM suhoag/hiworks-api-apahe-dev
 
 ENV PHP_VERSION 7.2
 
+# php 저장소 추가 및 시스템 업데이트
+RUN add-apt-repository ppa:ondrej/php -y && \
+    apt-get update
+
 # 업데이트 및 모듈 설치
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get  install apt-utils software-properties-common tzdata apache2 vim -y && \
-    ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
-    add-apt-repository ppa:ondrej/php -y && \
-    apt-get update && apt upgrade -y && \
-    apt-get install php7.2 php7.2-fpm php7.2-mysql php7.2-mbstring php7.2-zip php7.2-xml php7.2-curl php-xdebug php-memcache php-memcached -y
+RUN apt-get install php$PHP_VERSION php$PHP_VERSION-fpm php$PHP_VERSION-mysql php$PHP_VERSION-mbstring php$PHP_VERSION-zip php$PHP_VERSION-xml php$PHP_VERSION-curl php$PHP_VERSION-intl php$PHP_VERSION-soap php-xdebug php-memcache php-memcached -y
 
 # composer 설치
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
@@ -25,10 +24,7 @@ RUN echo "xdebug.remote_enable=true" >> /etc/php/7.2/fpm/php.ini && \
     sed -i 's/display_errors = Off/display_errors = On/g' /etc/php/7.2/fpm/php.ini
 
 #apache 모듈 활성화
-RUN a2enmod proxy_fcgi setenvif rewrite ssl && a2enconf php7.2-fpm
-
-#볼륨 경로 생성(인증서)
-RUN mkdir /etc/apache2/certificate
+RUN a2enconf php7.2-fpm
 
 # 정리
 RUN apt-get autoremove -y && apt-get clean -y && \

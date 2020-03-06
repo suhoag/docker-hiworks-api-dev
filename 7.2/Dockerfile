@@ -1,4 +1,4 @@
-FROM suhoag/hiworks-api-apahe-dev
+FROM hiworks/develop-apache
 
 ENV PHP_VERSION 7.2
 

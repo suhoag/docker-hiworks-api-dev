@@ -17,7 +17,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 
 # php.ini 에 xdebug 설정 추가
 RUN echo "xdebug.remote_enable=true" >> /etc/php/$PHP_VERSION/fpm/php.ini && \
-    echo "xdebug.remote_connect_back=true" >> /etc/php/$PHP_VERSION/fpm/php.ini && \
+    echo "xdebug.remote_host=host.docker.internal" >> /etc/php/$PHP_VERSION/fpm/php.ini && \
     echo "xdebug.idekey=PHPSTORM" >> /etc/php/$PHP_VERSION/fpm/php.ini && \
     sed -i 's/;date.timezone =/date.timezone = Asia\/Seoul/g' /etc/php/$PHP_VERSION/fpm/php.ini && \
     sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/g' /etc/php/$PHP_VERSION/fpm/php.ini && \

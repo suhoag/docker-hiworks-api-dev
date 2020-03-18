@@ -2,7 +2,7 @@
 
 set -e
 
-service php5.6-fpm start
+service php$PHP_VERSION-fpm start
 
 /usr/sbin/apache2ctl -DFOREGROUND
 

@@ -7,7 +7,7 @@ RUN add-apt-repository ppa:ondrej/php -y && \
     apt-get update
 
 # 업데이트 및 모듈 설치
-RUN apt-get install php$PHP_VERSION php$PHP_VERSION-fpm php$PHP_VERSION-mysql php$PHP_VERSION-mbstring php$PHP_VERSION-zip php$PHP_VERSION-xml php$PHP_VERSION-curl php$PHP_VERSION-intl php$PHP_VERSION-soap php-xdebug php-memcache php-memcached -y
+RUN apt-get install php$PHP_VERSION php$PHP_VERSION-fpm php$PHP_VERSION-mysql php$PHP_VERSION-mbstring php$PHP_VERSION-zip php$PHP_VERSION-xml php$PHP_VERSION-curl php$PHP_VERSION-intl php$PHP_VERSION-soap php$PHP_VERSION-mailparse php-xdebug php-memcache php-memcached -y
 
 # composer 설치
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
